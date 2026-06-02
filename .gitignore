@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel
+
+# CV and personal files
+Profile.pdf
+*.pdf
+*.jpg
+*.png
+!/public/images/**/*
+

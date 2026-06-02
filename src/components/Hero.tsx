@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { ArrowRight, Mail } from "lucide-react";
+import { Mail, Sparkles } from "lucide-react";
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -58,60 +58,85 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden bg-slate-950"
+      className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden bg-[#060211]"
     >
-      {/* Dynamic Background Accents */}
-      <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl -z-10 animate-pulse duration-8000" />
-      <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -z-10 animate-pulse duration-5000" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-violet-900/5 to-cyan-800/5 rounded-full blur-3xl -z-10" />
+      {/* Background Gradients and Glowing Orbs matching Figma Design */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-purple-900/10 rounded-full blur-[140px] -z-10" />
+      <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-indigo-900/10 rounded-full blur-[120px] -z-10" />
+      
+      {/* Outer grid pattern overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#130c25_1px,transparent_1px),linear-gradient(to_bottom,#130c25_1px,transparent_1px)] bg-[size:5rem_5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 -z-20" />
 
-      {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-35 -z-20" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <div className="max-w-4xl mx-auto px-6 sm:px-8 w-full">
+        <div className="flex flex-col items-start text-left space-y-10">
           
-          {/* Left Column: Details */}
-          <div className="lg:col-span-7 text-left space-y-8 order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-violet-500/30 bg-violet-950/30 text-violet-300 text-xs font-semibold tracking-wide backdrop-blur-sm animate-fade-in">
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              Available for Freelance & Full-time Roles
-            </div>
-
-            <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-                Hi, I'm <br />
-                <span className="bg-gradient-to-r from-violet-400 via-purple-400 to-cyan-300 bg-clip-text text-transparent">
-                  Muhammad Usama Sharif
-                </span>
-              </h1>
-
-              {/* Animated Text Subtitle */}
-              <div className="h-12 flex items-center">
-                <span className="text-xl sm:text-2xl font-bold text-slate-300">
-                  A{" "}
-                  <span className="text-transparent bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text inline-block transition-all duration-500">
-                    {titles[activeTitle]}
-                  </span>
-                </span>
+          {/* Avatar and Welcome Badge */}
+          <div className="flex items-center gap-6">
+            <div className="relative">
+              {/* Glowing Purple Halo Behind Profile Photo */}
+              <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 opacity-60 blur-md animate-pulse" />
+              
+              <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-violet-500/80 bg-slate-900 shadow-xl shadow-violet-950/40">
+                <Image
+                  src="/images/profile.jpg"
+                  alt="Muhammad Usama Sharif"
+                  fill
+                  priority
+                  className="object-cover object-center"
+                />
               </div>
-
-              <p className="text-slate-400 text-base sm:text-lg max-w-xl leading-relaxed">
-                Computer Science graduate specializing in building scalable full-stack web applications and robust Shopify stores. I integrate modern frontend frameworks with robust backend systems to deliver elegant, high-impact digital experiences.
-              </p>
             </div>
 
-            {/* Social Icons */}
+            {/* Custom arrow and tag matching "Hello! I'm Muhammad Usama Sharif" */}
+            <div className="flex flex-col space-y-1 animate-fade-in">
+              <div className="flex items-center gap-1 text-slate-400 text-xs font-mono">
+                <span>↳</span>
+                <span className="text-violet-400 font-semibold uppercase tracking-wider">Hello! I'm</span>
+              </div>
+              <h2 className="text-white text-lg sm:text-xl font-bold tracking-tight">
+                Muhammad Usama Sharif
+              </h2>
+            </div>
+          </div>
+
+          {/* Subtitle line matching: "A developer who judges a book by its cover." */}
+          <div className="space-y-4 max-w-3xl">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.12] tracking-tight">
+              A developer who <br />
+              judges a book <br />
+              by its <span className="bg-gradient-to-r from-violet-400 via-indigo-300 to-cyan-400 bg-clip-text text-transparent underline decoration-violet-500/40 decoration-wavy underline-offset-8">cover</span>.
+            </h1>
+
+            {/* Futuristic Role Brackets */}
+            <div className="flex items-center gap-2 pt-2 text-slate-300 font-mono text-lg sm:text-xl font-bold">
+              <span>I'm a</span>
+              <span className="bg-slate-900/60 border border-slate-800/80 px-3 py-1 rounded-lg text-violet-400 shadow-inner">
+                {titles[activeTitle]}
+              </span>
+              <span className="w-1.5 h-6 bg-violet-400 animate-pulse ml-0.5" />
+            </div>
+          </div>
+
+          {/* Software Engineer Sub-description matching Figma text style */}
+          <div className="space-y-6 max-w-2xl text-slate-400 text-base sm:text-lg leading-relaxed">
+            <p className="flex items-center gap-2.5 text-sm text-slate-300 font-medium">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
+              Currently a Junior Shopify Developer at <strong className="text-white font-semibold">SystemsD</strong>.
+            </p>
+            <p>
+              A self-taught UI/UX designer and Fullstack MERN Engineer. I create meaningful and delightful digital products that maintain an equilibrium between user needs and business goals.
+            </p>
+          </div>
+
+          {/* Socials & CTAs */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-6 pt-4 w-full">
             <div className="flex items-center gap-4 text-slate-400">
               <a
                 href="https://github.com/musa781"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-slate-900 border border-slate-800 hover:border-violet-500 hover:text-white hover:-translate-y-1 transition-all duration-300"
-                aria-label="GitHub Profile"
+                className="p-3 rounded-full bg-slate-900/50 border border-slate-800 hover:border-violet-500 hover:text-white transition-all duration-300"
+                aria-label="GitHub"
               >
                 <GithubIcon className="w-5 h-5" />
               </a>
@@ -119,74 +144,33 @@ export default function Hero() {
                 href="https://www.linkedin.com/in/muhammad-usama-sharif-685274304"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-slate-900 border border-slate-800 hover:border-violet-500 hover:text-white hover:-translate-y-1 transition-all duration-300"
-                aria-label="LinkedIn Profile"
+                className="p-3 rounded-full bg-slate-900/50 border border-slate-800 hover:border-violet-500 hover:text-white transition-all duration-300"
+                aria-label="LinkedIn"
               >
                 <LinkedinIcon className="w-5 h-5" />
               </a>
               <a
                 href="mailto:sharifusama351@gmail.com"
-                className="p-2.5 rounded-full bg-slate-900 border border-slate-800 hover:border-violet-500 hover:text-white hover:-translate-y-1 transition-all duration-300"
-                aria-label="Email Address"
+                className="p-3 rounded-full bg-slate-900/50 border border-slate-800 hover:border-violet-500 hover:text-white transition-all duration-300"
+                aria-label="Email"
               >
                 <Mail className="w-5 h-5" />
               </a>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex items-center gap-4">
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-violet-600/10 hover:shadow-violet-600/30 transition-all duration-300 hover:scale-[1.02] transform"
+                className="px-6 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-semibold shadow-lg shadow-violet-600/10 transition-all duration-300"
               >
-                Explore My Work
-                <ArrowRight className="w-4 h-4" />
+                View Lab
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-slate-800 hover:border-slate-700 bg-slate-900/50 hover:bg-slate-900 text-slate-300 hover:text-white font-semibold transition-all duration-300 hover:scale-[1.02] transform"
+                className="px-6 py-3 rounded-xl border border-slate-800 hover:border-slate-700 bg-slate-900/30 text-slate-300 hover:text-white transition-all duration-300"
               >
-                Let's Talk
+                Contact
               </a>
-            </div>
-
-            {/* Metrics */}
-            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-900 max-w-xl">
-              <div>
-                <p className="text-2xl sm:text-3xl font-black text-white">1+</p>
-                <p className="text-slate-500 text-xs sm:text-sm">Year Experience</p>
-              </div>
-              <div>
-                <p className="text-2xl sm:text-3xl font-black text-white">10+</p>
-                <p className="text-slate-500 text-xs sm:text-sm">Projects Built</p>
-              </div>
-              <div>
-                <p className="text-2xl sm:text-3xl font-black text-white">4+</p>
-                <p className="text-slate-500 text-xs sm:text-sm">ML/AI Models</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Profile Image */}
-          <div className="lg:col-span-5 flex justify-center order-1 lg:order-2">
-            <div className="relative group">
-              {/* Outer Glowing Accents */}
-              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-violet-600 to-cyan-500 opacity-30 blur-lg group-hover:opacity-60 transition duration-1000 group-hover:duration-200" />
-              
-              {/* Card Container */}
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/90 p-3 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-500">
-                {/* Embedded Profile Image */}
-                <div className="relative w-full h-full rounded-xl overflow-hidden bg-slate-950">
-                  <Image
-                    src="/images/profile.jpg"
-                    alt="Muhammad Usama Sharif"
-                    fill
-                    sizes="(max-w-72px) 100vw, 384px"
-                    priority
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-              </div>
             </div>
           </div>
 

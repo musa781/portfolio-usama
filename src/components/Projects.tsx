@@ -98,8 +98,8 @@ export default function Projects() {
         "Comprehensive model evaluations achieving 94% accuracy rates."
       ],
       github: "https://github.com/musa781/fake-news-detector",
-      live: "https://fake-news-detector.demo",
-      mockupUrl: "fakenews-detector.ai"
+      live: "https://g9-news-analyzer.vercel.app/",
+      mockupUrl: "g9-news-analyzer.vercel.app"
     },
     {
       title: "Live Shopify Store",

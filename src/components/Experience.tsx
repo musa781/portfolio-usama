@@ -1,10 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { Briefcase, Calendar, MapPin, Sparkles } from "lucide-react";
+import { Briefcase, Calendar, MapPin, Sparkles, X, Eye } from "lucide-react";
 
 export default function Experience() {
+  const [selectedCert, setSelectedCert] = useState<{
+    image: string;
+    title: string;
+    company: string;
+  } | null>(null);
+
   const experiences = [
     {
       role: "Junior Shopify Developer",
@@ -18,7 +24,8 @@ export default function Experience() {
         "Collaborating with clients and designers to deliver high-quality, high-converting checkout flows.",
         "Optimizing stores for conversion rate optimization, speed, and mobile responsiveness."
       ],
-      skills: ["Shopify Store Setup", "Liquid", "Theme Customizations", "Shopify Polaris", "Conversion Optimization"]
+      skills: ["Shopify Store Setup", "Liquid", "Theme Customizations", "Shopify Polaris", "Conversion Optimization"],
+      hasCertificate: false
     },
     {
       role: "Back End & Shopify Developer",
@@ -32,7 +39,10 @@ export default function Experience() {
         "Integrated custom Node.js and REST/GraphQL backend logic to manage Shopify webhooks and store operations.",
         "Authored custom plugins and contributed directly to enhancements of active live-store products."
       ],
-      skills: ["Remix (React Router v7)", "Shopify Polaris", "Shopify CLI", "Node.js", "GraphQL", "Webhooks"]
+      skills: ["Remix (React Router v7)", "Shopify Polaris", "Shopify CLI", "Node.js", "GraphQL", "Webhooks"],
+      hasCertificate: true,
+      certTitle: "Backend Developer Certificate",
+      certImage: "/images/cert_softpulse.png"
     },
     {
       role: "MERN Stack Web Developer",
@@ -46,7 +56,8 @@ export default function Experience() {
         "Developed different real-time scalable projects under the MERN stack paradigm, focusing on smooth data synchronization.",
         "Greatly improved overall UI responsiveness, application code quality, and page performance."
       ],
-      skills: ["React.js", "Node.js", "Express.js", "MongoDB", "REST APIs", "MERN Stack"]
+      skills: ["React.js", "Node.js", "Express.js", "MongoDB", "REST APIs", "MERN Stack"],
+      hasCertificate: false
     },
     {
       role: "Web Developer Intern",
@@ -59,7 +70,10 @@ export default function Experience() {
         "Assisted in maintaining and deploying web application features, writing modular CSS/Tailwind layouts.",
         "Collaborated with senior engineers to troubleshoot database queries and fix client-facing UX glitches."
       ],
-      skills: ["HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap", "Git"]
+      skills: ["HTML5", "CSS3", "JavaScript", "jQuery", "Bootstrap", "Git"],
+      hasCertificate: true,
+      certTitle: "Web Development Certificate",
+      certImage: "/images/cert_visabridge.png"
     },
     {
       role: "Python Developer",
@@ -72,7 +86,10 @@ export default function Experience() {
         "Deep-dived into Python scientific data libraries including NumPy, Pandas, and Matplotlib.",
         "Studied machine learning frameworks (Scikit-Learn) and computer vision modules (OpenCV) for basic variant analyses."
       ],
-      skills: ["Python", "NumPy", "Pandas", "Scikit-Learn", "OpenCV", "Algorithms"]
+      skills: ["Python", "NumPy", "Pandas", "Scikit-Learn", "OpenCV", "Algorithms"],
+      hasCertificate: true,
+      certTitle: "Python (Basic) Certificate",
+      certImage: "/images/cert_hackerrank.png"
     }
   ];
 
@@ -115,58 +132,106 @@ export default function Experience() {
               {/* Card Container */}
               <div className="rounded-2xl border border-slate-900 bg-slate-900/35 hover:bg-slate-900/60 p-6 md:p-8 hover:border-slate-800/80 transition-all duration-300 shadow-md backdrop-blur-sm hover:shadow-lg hover:shadow-violet-600/[0.02]">
                 
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                  <div>
-                    <h3 className="text-xl font-bold text-white group-hover:text-violet-400 transition-colors">
-                      {exp.role}
-                    </h3>
-                    
-                    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2 text-sm text-slate-400">
-                      <span className="font-semibold text-slate-200 flex items-center gap-1.5">
-                        {exp.logo ? (
-                          <span className="relative inline-block w-5 h-5 rounded overflow-hidden">
-                            <Image
-                              src={exp.logo}
-                              alt={exp.company}
-                              fill
-                              className="object-contain"
-                            />
+                <div className="flex flex-col lg:flex-row gap-6 justify-between items-start">
+                  
+                  {/* Left Column: Job Details */}
+                  <div className="flex-1 w-full">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                      <div>
+                        <h3 className="text-xl font-bold text-white group-hover:text-violet-400 transition-colors">
+                          {exp.role}
+                        </h3>
+                        
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2 text-sm text-slate-400">
+                          <span className="font-semibold text-slate-200 flex items-center gap-1.5">
+                            {exp.logo ? (
+                              <span className="relative inline-block w-5 h-5 rounded overflow-hidden">
+                                <Image
+                                  src={exp.logo}
+                                  alt={exp.company}
+                                  fill
+                                  className="object-contain"
+                                />
+                              </span>
+                            ) : null}
+                            {exp.company}
                           </span>
-                        ) : null}
-                        {exp.company}
-                      </span>
-                      <span className="md:hidden flex items-center gap-1">
-                        <Calendar className="w-3.5 h-3.5" />
-                        {exp.duration}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5" />
-                        {exp.location}
-                      </span>
+                          <span className="md:hidden flex items-center gap-1">
+                            <Calendar className="w-3.5 h-3.5" />
+                            {exp.duration}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <MapPin className="w-3.5 h-3.5" />
+                            {exp.location}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Job Bullet Points */}
+                    <ul className="space-y-3 mb-6">
+                      {exp.details.map((detail, dIdx) => (
+                        <li key={dIdx} className="text-slate-400 text-sm leading-relaxed flex items-start gap-2.5">
+                          <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-violet-500" />
+                          <span>{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* Technology Badges */}
+                    <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-900">
+                      {exp.skills.map((skill, sIdx) => (
+                        <span
+                          key={sIdx}
+                          className="px-2.5 py-1 rounded bg-slate-950 border border-slate-800/80 text-slate-400 text-xs hover:text-white hover:border-slate-700 transition-colors"
+                        >
+                          {skill}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                </div>
 
-                {/* Job Bullet Points */}
-                <ul className="space-y-3 mb-6">
-                  {exp.details.map((detail, dIdx) => (
-                    <li key={dIdx} className="text-slate-400 text-sm leading-relaxed flex items-start gap-2.5">
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-violet-500" />
-                      <span>{detail}</span>
-                    </li>
-                  ))}
-                </ul>
+                  {/* Right Column: Certificate Thumbnail Preview */}
+                  {exp.hasCertificate && exp.certImage && (
+                    <div className="w-full lg:w-auto lg:flex-shrink-0 pt-4 lg:pt-0 self-stretch lg:self-start">
+                      <p className="text-slate-500 text-xs font-bold uppercase tracking-wider mb-2.5">
+                        Experience Credential
+                      </p>
+                      
+                      <div
+                        onClick={() => setSelectedCert({
+                          image: exp.certImage!,
+                          title: exp.certTitle!,
+                          company: exp.company
+                        })}
+                        className="group/degree cursor-pointer relative flex items-center lg:flex-col lg:items-stretch gap-3 p-3.5 rounded-xl border border-slate-800 bg-slate-950 hover:bg-slate-900/60 hover:border-violet-500 transition-all duration-300"
+                      >
+                        {/* Image Thumbnail wrapper */}
+                        <div className="relative w-24 h-16 lg:w-40 lg:h-28 rounded-lg overflow-hidden border border-slate-800 bg-slate-900 mx-auto">
+                          <Image
+                            src={exp.certImage}
+                            alt={exp.certTitle || "Certificate document"}
+                            fill
+                            className="object-cover group-hover/degree:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-slate-950/40 flex items-center justify-center opacity-0 group-hover/degree:opacity-100 transition-opacity">
+                            <Eye className="w-5 h-5 text-white" />
+                          </div>
+                        </div>
 
-                {/* Technology Badges */}
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-900">
-                  {exp.skills.map((skill, sIdx) => (
-                    <span
-                      key={sIdx}
-                      className="px-2.5 py-1 rounded bg-slate-950 border border-slate-800/80 text-slate-400 text-xs hover:text-white hover:border-slate-700 transition-colors"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+                        {/* Info label */}
+                        <div className="max-w-[200px] lg:max-w-none lg:text-center lg:mt-2">
+                          <p className="text-white text-sm font-semibold truncate leading-tight group-hover/degree:text-violet-400 transition-colors">
+                            {exp.certTitle}
+                          </p>
+                          <p className="text-slate-500 text-xxs mt-1 flex items-center lg:justify-center gap-1">
+                            Click to View Certificate
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                 </div>
 
               </div>
@@ -174,7 +239,52 @@ export default function Experience() {
           ))}
         </div>
 
+        {/* Certificate Full Preview Modal */}
+        {selectedCert && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md transition-opacity animate-fade-in">
+            <div className="relative w-full max-w-4xl rounded-2xl border border-slate-800 bg-slate-900 p-4 md:p-6 overflow-y-auto max-h-[95vh] shadow-2xl animate-scale-in flex flex-col items-center">
+              
+              {/* Modal header */}
+              <div className="w-full flex justify-between items-center mb-4 border-b border-slate-800 pb-3">
+                <div>
+                  <h3 className="text-white font-bold text-lg md:text-xl truncate">
+                    {selectedCert.title}
+                  </h3>
+                  <p className="text-slate-400 text-xs mt-0.5">
+                    Issued by {selectedCert.company}
+                  </p>
+                </div>
+                <button
+                  onClick={() => setSelectedCert(null)}
+                  className="p-2 rounded-full bg-slate-950 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition-all"
+                  aria-label="Close Preview"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Certificate Image Frame */}
+              <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] rounded-xl overflow-hidden bg-slate-950 border border-slate-800 p-1 flex items-center justify-center">
+                <Image
+                  src={selectedCert.image}
+                  alt={selectedCert.title}
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              {/* Footer details */}
+              <div className="w-full text-center text-slate-400 text-xs mt-4">
+                Verified Credential &bull; {selectedCert.company}
+              </div>
+
+            </div>
+          </div>
+        )}
+
       </div>
     </section>
   );
 }
+
